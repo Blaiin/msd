@@ -1,0 +1,60 @@
+<server>
+
+    <!-- Libs -->
+    <library id="oracleV11">
+        <fileset dir="${shared.resource.dir}/library/oracleV11" includes="*.jar"/>
+    </library>
+
+    <library id="oracleV17">
+        <fileset dir="${shared.resource.dir}/library/oracleV17" includes="*.jar"/>
+    </library>
+
+    <library id="generic">
+        <fileset dir="${shared.resource.dir}/library/genericdrivers" includes="*.jar"/>
+    </library>
+
+
+    <!-- Project datasource -->
+    <dataSource id="msdDataSource" jndiName="jdbc/msdDataSource">
+        <jdbcDriver libraryRef="oracleV17"/>
+        <properties.oracle
+                URL="${env.DATABASE_URL}"
+                user="${env.DATABASE_USER}"
+                password="${env.DATABASE_PASSWORD}"/>
+    </dataSource>
+
+
+
+    <!-- JNDIs -->
+    <dataSource id="caso_test_1" jndiName="jdbc/eavEjbs">
+        <jdbcDriver libraryRef="oracleV17" />
+        <properties.oracle
+                URL = "${env.TEST1_URL_SIMPLEHOSTBASED}"
+                user = "${env.TEST1_USER}"
+                password = "${env.TEST1_PASS}"/>
+    </dataSource>
+
+    <dataSource id="caso_test_2_test" jndiName="jdbc/svu1Test">
+        <jdbcDriver libraryRef="oracleV11" />
+        <properties.oracle
+                URL = "${env.TEST2_T_URL_SIMPLEHOSTBASED}"
+                user = "${env.TEST2_T_USER}"
+                password = "${env.TEST2_T_PASS}"/>
+    </dataSource>
+
+    <dataSource id="caso_test_2_validazione" jndiName="jdbc/svu1Validazione">
+        <jdbcDriver libraryRef="oracleV11" />
+        <properties.oracle
+                URL = "${env.TEST2_V_URL_SIMPLEHOSTBASED}"
+                user = "${env.TEST2_V_USER}"
+                password = "${env.TEST2_V_PASS}"/>
+    </dataSource>
+
+    <dataSource id="caso_test_3" jndiName="jdbc/eav">
+        <jdbcDriver libraryRef="oracleV11" />
+        <properties.oracle
+                URL = "${env.TEST3_URL_SIMPLEHOSTBASED}"
+                user = "${env.TEST3_USER}"
+                password = "${env.TEST3_PASS}"/>
+    </dataSource>
+</server>

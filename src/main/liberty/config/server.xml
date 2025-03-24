@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="Monitoraggio">
+
+    <featureManager>
+        <feature>jakartaee-10.0</feature>
+        <feature>microProfile-6.1</feature>
+    </featureManager>
+
+    <include location="components/database.xml"/>
+
+    <basicRegistry id="basic" realm="BasicRealm">
+    </basicRegistry>
+
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="*"
+                  httpPort="${env.HTTP_PORT}"
+                  httpsPort="${env.HTTPS_PORT}">
+    </httpEndpoint>
+
+    <applicationManager autoExpand="true"/>
+
+    <webApplication contextRoot="/monitoraggio" location="monitoraggio.war"/>
+
+    <logging traceSpecification="com.ibm.ws.kernel.boot=all=enabled"/>
+
+    <keyStore id="defaultKeyStore" password="${env.KEYSTORE_PASSWORD}" />
+
+    <ssl id="defaultSSLConfig"
+         keyStoreRef="defaultKeyStore"
+         sslProtocol="TLS"/>
+
+</server>

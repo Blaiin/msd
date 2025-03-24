@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="InfoConsole" target="SYSTEM_OUT">
+<!--            <PatternLayout pattern="%d{HH:mm:ss} - %-30c{1}:%-3L - %m - [%-t]%n"/>-->
+            <PatternLayout pattern="%d{HH:mm:ss} - %-20c{1}:%-3L - %m%n"/>
+<!--            <Filters>-->
+<!--                <LevelRangeFilter minLevel="FATAL" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>-->
+<!--            </Filters>-->
+        </Console>
+
+        <RollingFile name="DebugFile" fileName="${env:LOG4J}/debug.log"
+                     filePattern="${env:log4j}/debug-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%-5p %d{HH:mm:ss} [%t] %c{1}:%L - %m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/> <!-- Backup files number -->
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="InfoConsole"/>
+            <AppenderRef ref="DebugFile"/>
+        </Root>
+
+        <Logger name="org.quartz" level="DEBUG" additivity="false">
+            <AppenderRef ref="DebugFile"/>
+        </Logger>
+    </Loggers>
+</Configuration>
